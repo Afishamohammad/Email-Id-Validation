@@ -1,0 +1,66 @@
+PROGRAM:
+
+package email.id.validation;
+
+import java.util.ArrayList;
+import java.util.List;
+import java.util.Scanner;
+import java.util.regex.Matcher;
+import java.util.regex.Pattern;
+
+public class EmailIdValidation {
+
+	   public static boolean isValidEmail(String email) {
+		   String ref = "^(.+)@(.+)$";
+		 //initializing the Pattern object
+	       Pattern pattern = Pattern.compile(ref);
+	       Matcher matcher = pattern.matcher(email);
+	       return matcher.matches();		       
+	   }
+
+	public static void main(String[] args) {
+		
+	       List<String> emails = new ArrayList<String>();
+	       // valid email addresses
+	       emails.add("starplus@exp.com");
+	       
+	       emails.add("hotstar.channel@exp.co.org");
+	       
+	       emails.add("cricket.team@exp.org");
+	       
+	       //invalid email addresses
+	       emails.add("amaravati.exp.com");
+	       
+	       emails.add("cricket..team$exp.com");
+
+	       emails.add("Company.Employee#org");
+	       
+	       
+
+	       for (String value : emails) 
+	           System.out.println("The Email address " + value + " is:" + (isValidEmail(value) ? "valid" : "invalid"));
+	      	  
+	       System.out.println("\nENTER YOUR MAIL ID TO CHECK :");
+	       
+	      	try (Scanner sc = new Scanner(System.in)) {
+			String input = sc.nextLine();				  
+			System.out.println("The Email Address " + input + " is:" + (isValidEmail(input) ? "valid" : "invalid"));
+	       }
+			
+	}
+
+}
+
+
+OUTPUT:
+
+The Email address starplus@exp.com is:valid
+The Email address hotstar.channel@exp.co.org is:valid
+The Email address cricket.team@exp.org is:valid
+The Email address amaravati.exp.com is:invalid
+The Email address cricket..team$exp.com is:invalid
+The Email address Company.Employee#org is:invalid
+
+ENTER YOUR MAIL ID TO CHECK :
+adi.hometown@mail.com
+The Email Address adi.hometown@mail.com is:valid
